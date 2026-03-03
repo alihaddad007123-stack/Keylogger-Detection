@@ -2,7 +2,7 @@ import re
 import os 
 from datetime import datetime
 
-def log_writer(text):#كل ما نكتشف كلمة مشبوهة → نرسلها للـ console ونكتبها بالتقرير
+def log_writer(text):
     print(text)
     report.write(text+"\n")
 report=open("keylogger_report.txt","w",encoding="utf-8")
@@ -13,7 +13,7 @@ keyword_counter={}
 file_counter={}
 for root ,dirs,files in os.walk(path):
     for file in files:
-        full_path=os.path.join(root,file)#نحن بدنا نجمع مسارين مع بعض
+        full_path=os.path.join(root,file)
         try:
             if not any(file.lower().endswith(ext) for ext in allowed_extension):
                 continue
@@ -33,7 +33,5 @@ if file_counter:
     top_file=max(file_counter,key=file_counter.get)
     log_writer(f"\n🔥 Top Suspicious File: {top_file} ({file_counter[top_file]} keywords found)")
 report.close()
-appdata = os.getenv('APPDATA') #os.getenv يعيد قيمة متغير بيئة النظام
-home = os.path.expanduser('~')#يعيد مجلد المستخدم على أي جهاز.
-folders_to_scan=[appdata,home]
-print(folders_to_scan)
+
+
